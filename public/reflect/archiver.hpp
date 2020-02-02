@@ -18,8 +18,8 @@ namespace reflect::traits
 	{
 		struct eStruct {}; //!< inherited from @FArchived
 		struct eSimple {}; //!< default case. io << and >> are required
-		struct eVector {}; //!< any stretching array like type
-		struct eMap {}; //!< any stretch map like type
+		struct eVector {}; //!< any stretching array like std::vector
+		struct eMap {}; //!< any stretch map like std::map
 		// TODO:: static arrays
 	}
 
@@ -32,7 +32,7 @@ namespace reflect::traits
 			, EType::eStruct
 			, EType::eSimple>;
 		using subtype = void; // conainers
-		using keytype = void; // associated containers
+		using keytype = void; // key-value containers
 	};
 
 	template<typename T> //!< helper
@@ -84,7 +84,6 @@ namespace reflect
 		// serialize self to a json
 		std::string Save() const;
 
-	public:
 		template<typename T>
 		Archiver& AddField(const T& t, const std::string& full_name)
 		{
